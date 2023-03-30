@@ -61,7 +61,7 @@ $code = $_POST['code'];
 $name = $_POST['name']; 
 $email = $_POST['email']; 
 $address = $_POST['address']; 
-$bestplayer = $_POST['best_player']; 
+$bestplayer = $_POST['player']; 
 
 $result = $collection->findOne(array('code' => $code));
 
@@ -74,7 +74,7 @@ if ($result != null && !$result['redeemed'])
         'name' => $name,
         'email' => $email,
         'address' => $address,
-        'best_player' => $bestplayer,
+        'player' => $bestplayer,
         'code' => $code
     );
 
