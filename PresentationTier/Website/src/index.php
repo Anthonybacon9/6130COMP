@@ -2,12 +2,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Runners Euro Comp</title>
+	<title>Runners Crisps Competition</title>
 	<style>
-		/* Styling for the page */
 		body {
 			font-family: 'Open Sans', sans-serif;
-			background: url('https://wallpaperset.com/w/full/9/4/3/185419.jpg') no-repeat center center fixed;
 			background-size: cover;
 		}
 		h1 {
@@ -63,9 +61,7 @@
 	</style>
 </head>
 <body>
-	<!-- Page header -->
-	<h1>Runners Euro Comp</h1>
-	<!-- Form for users to fill in their details -->
+	<h1>Runners Crips Competition</h1>
 	<form action="BusinessTier/Backend/src/backend.php" method="POST">
 		<label for="name">Name:</label>
 		<input type="text" id="name" name="name" required>

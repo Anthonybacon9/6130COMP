@@ -119,7 +119,7 @@ services:
     restart: "no"
     volumes:
       - ./database/setup.sh:/database/setup.sh
-      - ./database/init.js:/database/init.js
+      - ./BusinessTier/Backend/src/Backend.php
     entrypoint: [ "bash", "/database/setup.sh" ]
 
 networks:
