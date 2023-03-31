@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  # Front-end web server
+  web:
+    build: ./web
+    ports:
+      - "80:80"
+    depends_on:
+      - lb_web
+
+  # Back-end service
+  service:
+    build: ./service
+    ports:
+      - "8080"
+    depends_on:
+      - db
+      - lb_service
+
+  # Load balancer for front-end
+  lb_web:
+    image: nginx
+    volumes:
+      - ./nginx/web.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+
+  # Load balancer for back-end
+  lb_service:
+    image: nginx
+    volumes:
+      - ./nginx/service.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - service
+
+  # MongoDB database
+  db:
+    image: mongo:4.1
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - "27017:27017"
+    command: mongod --replSet rs0 --bind_ip_all
+
+  # MongoDB replica set initialization script
+  init_db:
+    image: mongo:4.1
+    volumes:
+      - ./scripts:/scripts
+    depends_on:
+      - db
+    command: /scripts/init_db.sh
